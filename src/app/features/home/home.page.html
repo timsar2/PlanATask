@@ -1,0 +1,17 @@
+<ion-header [translucent]="true" >
+    <ion-toolbar>
+        <ion-title>
+            <div class="flex items-center justify-between">
+                {{title | async}}
+                <img src="../../../assets/icon/Plan-A-Technologies-Light-2.svg" />
+            </div>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="flex flex-col items-center justify-center h-screen">
+        <h1 class="animate-bounce">{{description | async}}</h1>
+        <p>Check Other Page For State Management</p>
+    </div>    
+</ion-content>
