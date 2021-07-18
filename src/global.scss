@@ -41,6 +41,9 @@
     ion-toolbar{
         --background: var(--ion-color-secondary);
         --color: var(--ion-color-light);
+        div{
+            align-items: center;
+        }
         img{
             @apply w-1/5;
             max-width: 100px;
