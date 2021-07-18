@@ -10,8 +10,6 @@ import { PageData, BaseState } from './shared/models/base-page.model';
 import { LoadBasePagesAction } from './shared/store/actions/base-page.action';
 import { GetBasePageByNameAction } from 'src/app/shared/store/actions/base-page.action';
 
-
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
