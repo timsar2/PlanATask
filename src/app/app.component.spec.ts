@@ -1,14 +1,18 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
-
+import { TestBed, waitForAsync,  } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-
   beforeEach(waitForAsync(() => {
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
+      imports: [RouterTestingModule],
+      providers: [provideMockStore( ),
+        // other providers
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
