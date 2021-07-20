@@ -14,11 +14,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class CheckboxGroupComponent implements ControlValueAccessor {
   private onChange: (m: any) => void;
   private onTouched: (m: any) => void;
   _model: any;
-  items: boolean[];
 
   constructor(private ref: ChangeDetectorRef) {
     ref.detach();
@@ -34,18 +34,18 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
   writeValue(value: any): void {
     this._model = value;
-    
-    // detect change manualy because we want to change object index inside of ngfor
-    this.ref.detectChanges();
-    
 
-    //* Instead of using new obj to prevent missing index on ngfor, now we use change detaction strategy*/
-    // if(value != null){
-    //   this.items = [];
-    //   this._model.forEach(element => {
-    //     this.items.push(element);
-    //   });
-    // }
+    // detect change manualy because we want to change object index inside of ngfor
+    if(value != null) { this.ref.detectChanges(); }
+    
+    /** Use angular change detection strategy Instead of using new obj to prevent missing index inside of ngFor
+      if(value != null){
+        this.items = [];
+        this._model.forEach(element => {
+          this.items.push(element);
+        });
+      }
+    */
   }
 
   registerOnChange(fn: any): void {

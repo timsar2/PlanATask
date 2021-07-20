@@ -1,1 +1,0 @@
-(self.webpackChunkionic_test_app=self.webpackChunkionic_test_app||[]).push([[9442],{9442:(s,e,a)=>{"use strict";a.r(e),a.d(e,{SplashScreenWeb:()=>n});var c=a(5310);class n extends c.Uw{async show(s){}async hide(s){}}}}]);
