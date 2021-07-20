@@ -15,18 +15,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxGroupComponent implements ControlValueAccessor {
-  // private onChange: (m: any) => void;
+  private onChange: (m: any) => void;
   private onTouched: (m: any) => void;
   _model: any;
   items: boolean[];
 
-  constructor(private ref: ChangeDetectorRef) { }
+  constructor(private ref: ChangeDetectorRef) {
+    ref.detach();
+  }
 
   toggleCheck(index: number, event: Event) {
     this._model[index] = (event.target as HTMLInputElement).checked;
   }
-  onChange(m: any){
-  }
+
   get model() {
     return this._model;
   }
@@ -36,7 +37,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
     
     // detect change manualy because we want to change object index inside of ngfor
     this.ref.detectChanges();
-    this.ref.detach();
+    
 
     //* Instead of using new obj to prevent missing index on ngfor, now we use change detaction strategy*/
     // if(value != null){
