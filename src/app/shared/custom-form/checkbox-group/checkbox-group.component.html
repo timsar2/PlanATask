@@ -1,5 +1,5 @@
 <!-- <ng-content></ng-content> -->
-<ng-container *ngFor="let item of items;let i = index" >  
+<ng-container *ngFor="let item of _model;let i = index" >  
   <div>
     <label class="inline-flex items-center">
       <input type="checkbox" class="form-checkbox rounded text-indigo-600"  [checked]="item" (click)="toggleCheck(i, $event)"/>
