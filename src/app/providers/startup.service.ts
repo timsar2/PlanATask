@@ -35,7 +35,7 @@ export class StartupService {
     }
   ];
 
-  constructor(private router: Router, private route: ActivatedRoute, private store: Store) {
+  constructor(private router: Router, private store: Store) {
     this.setPageDataState();
     this.router.events
           .subscribe(
