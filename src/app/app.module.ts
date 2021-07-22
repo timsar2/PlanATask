@@ -13,10 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { StartupService } from './providers/startup.service';
 import { environment } from '../environments/environment';
 
-export const initializeApp = (startupService: StartupService): any => {
-  startupService.setPageDataState();
-  return  () => startupService.loadPageData();
-};
+export const initializeApp = (startupService: StartupService): any => ()=> startupService.loadPageData();
 
 @NgModule({
   declarations: [AppComponent],
