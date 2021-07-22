@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       
       SplashScreen.hide();
       const pageData = await this.getPageData();
-      this.GetPageData(pageData);
+      this.SetPageDataState(pageData);
     });
   }
   
@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
     return  data;   
   }
 
-  GetPageData(pageData: PageData[]) {
+  SetPageDataState(pageData: PageData[]) {
     this.store.dispatch(LoadBasePagesAction({payload: pageData}));
   }
 }

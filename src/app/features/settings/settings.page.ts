@@ -11,7 +11,7 @@ import { selectFeacureSetting } from 'src/app/shared/store/selectors/setting.sel
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
-  styleUrls: ['./settings.page.scss'],
+  styleUrls: ['./settings.page.scss']
 })
 export class SettingsPage extends BasePage implements OnInit {
   title =  this.store$.pipe(select(selectFeaturePageTitle));
