@@ -7,24 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreModule } from '@ngrx/store';
-import { StartupService } from './providers/startup.service';
-import { PageData } from './shared/models/base-page.model';
 
-async function  initializeApp(startupService: StartupService): Promise<void> {
-  
-  return new Promise(async (resolve) => {
-    debugger;
-  startupService.loadPageData().then((data) => console.log(data));
-    // let pageData = startupService.loadPageData();
-    // (await pageData).values
-    // // startupService.SetPageDataState(pageData);
-    resolve();
-  });
-}
-export function configFactory(config: StartupService) {
+import { StartupService } from './providers/startup.service';
+import { environment } from '../environments/environment';
+
+export function initializeApp(config: StartupService) {
   config.loadPageData();
   return  () => config.SetCurrentPageState();
 }
@@ -48,10 +37,9 @@ export function configFactory(config: StartupService) {
 providers: [
   StartupService,
   { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  // { provide: APP_INITIALIZER, deps: [StartupService,  ], useFactory: initializeApp, multi: true}
   {
     provide: APP_INITIALIZER,
-    useFactory: configFactory,
+    useFactory: initializeApp,
     deps: [StartupService],
     multi: true
   }

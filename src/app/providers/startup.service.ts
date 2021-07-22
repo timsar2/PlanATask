@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+
 import { BaseState, PageData } from '../shared/models/base-page.model';
 import { GetBasePageByNameAction, LoadBasePagesAction } from '../shared/store/actions/base-page.action';
 
