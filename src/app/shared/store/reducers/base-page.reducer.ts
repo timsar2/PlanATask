@@ -8,13 +8,13 @@ export const initialState: BaseState = {
             name: 'Home',
             base: {
                 title: 'Home Page',
-                description: 'Welcome to PlanATechnology'
+                description: 'Not Set Yet!'
             }
         }
     ],
     currentPageData: {
         title: 'Home Page',
-        description: 'Welcome to PlanATechnology'
+        description: 'Not Set Yet!'
     }
 };
 
@@ -24,7 +24,7 @@ const _basePageReducer = createReducer(
         return {
             ...state,
             data: action.payload,
-            currentPageData: {...state.currentPageData}
+            currentPageData: {...state.data.filter(x => x.name == action.pageName)[0].base}
         }
     }),
     on(GetBasePageByNameAction, (state, action) => {

@@ -6,8 +6,7 @@ import { StatusBar, Style } from '@capacitor/status-bar';
 import { Capacitor } from '@capacitor/core';
 
 import { Store } from '@ngrx/store';
-import { PageData, BaseState } from './shared/models/base-page.model';
-import { LoadBasePagesAction } from './shared/store/actions/base-page.action';
+import { BaseState } from './shared/models/base-page.model';
 import { GetBasePageByNameAction } from 'src/app/shared/store/actions/base-page.action';
 
 @Component({
@@ -23,13 +22,13 @@ export class AppComponent implements OnInit {
   ) {
 
     //  detecte routing change and select base page data as needed.
-    this.router.events.subscribe((val) => {
-      if(val instanceof NavigationEnd){
-        const pageName = val['urlAfterRedirects'].split("/").pop();
-        this.store.dispatch(GetBasePageByNameAction({pageName}));
-        return;
-      }
-    });
+    // this.router.events.subscribe((val) => {
+    //   if(val instanceof NavigationEnd){
+    //     const pageName = val['urlAfterRedirects'].split("/").pop();
+    //     this.store.dispatch(GetBasePageByNameAction({pageName}));
+    //     return;
+    //   }
+    // });
   }
 
   ngOnInit(): void {
@@ -44,39 +43,6 @@ export class AppComponent implements OnInit {
       };
       
       SplashScreen.hide();
-      const pageData = await this.getPageData();
-      this.SetPageDataState(pageData);
     });
-  }
-  
-  async getPageData(): Promise<PageData[]> {
-    const data:PageData[] = [
-      {
-        name: 'Home',
-        base: {
-          title: 'Home page',
-          description: 'Welcome to PlanATechnology'
-        }
-      },
-      {
-        name: 'Profile',
-        base: {
-          title: 'Profile page',
-          description: 'For Template Form Check Setting Page'
-        }
-      },
-      {
-        name: 'Settings',
-        base: {
-          title: 'Settings page',
-          description: 'For Reactive Form Check Profile Page'
-        }
-      }
-    ]
-    return  data;   
-  }
-
-  SetPageDataState(pageData: PageData[]) {
-    this.store.dispatch(LoadBasePagesAction({payload: pageData}));
   }
 }
