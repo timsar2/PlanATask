@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/state/app.state';
 import { BasePage } from 'src/app/shared/models/base-page';
 import { SetSettingAction } from 'src/app/shared/store/actions/setting.action';
-import { selectFeaturePageTitle, selectFeaturePageDescription } from 'src/app/shared/store/selectors/base-page.selector';
 import { selectFeacureSetting } from 'src/app/shared/store/selectors/setting.selector';
 
 
@@ -14,8 +13,6 @@ import { selectFeacureSetting } from 'src/app/shared/store/selectors/setting.sel
   styleUrls: ['./settings.page.scss']
 })
 export class SettingsPage extends BasePage implements OnInit {
-  title =  this.store$.pipe(select(selectFeaturePageTitle));
-  description = this.store$.pipe(select(selectFeaturePageDescription));
 
   settingItems$: Observable<boolean[]> = this.store$.pipe(select(selectFeacureSetting));
   selectedItems = [false, false , false] as boolean[];
@@ -32,6 +29,6 @@ export class SettingsPage extends BasePage implements OnInit {
     this.selectedItems.forEach(element => {
       tmp.push(element)
     });
-    this.store.dispatch(SetSettingAction({payload: tmp}))
+    this.store$.dispatch(SetSettingAction({payload: tmp}))
   }
 }
