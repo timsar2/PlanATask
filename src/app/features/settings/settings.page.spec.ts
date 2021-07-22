@@ -11,7 +11,7 @@ describe('SettingsPage', () => {
   let component: SettingsPage;
   let fixture: ComponentFixture<SettingsPage>;
   let store: MockStore;
-  
+
   const initialState: AppState = {
     base: {
       data:[],
@@ -21,7 +21,7 @@ describe('SettingsPage', () => {
     }
     },
     settings: {} as SettingState,
-    profile: {} as ProfileState    
+    profile: {} as ProfileState
   };
 
   beforeEach(waitForAsync(() => {
@@ -35,7 +35,7 @@ describe('SettingsPage', () => {
 
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(SettingsPage);
-    
+
     component = fixture.componentInstance;
     fixture.detectChanges();
     store.setState({
@@ -47,7 +47,7 @@ describe('SettingsPage', () => {
       }
       },
       settings: {} as SettingState,
-      profile: {} as ProfileState    
+      profile: {} as ProfileState
     });
     store.refreshState();
   }));

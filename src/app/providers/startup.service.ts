@@ -1,40 +1,52 @@
 import { Injectable } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { BaseState, PageData } from '../shared/models/base-page.model';
-import { GetBasePageByNameAction, LoadBasePagesAction } from '../shared/store/actions/base-page.action';
+import { PageData } from '../shared/models/base-page.model';
+import { getBasePageByNameAction, loadBasePagesAction } from '../shared/store/actions/base-page.action';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StartupService {  
+export class StartupService {
 
-  data:PageData[] = [
+  currentPagename = 'Home';
+  data: PageData[] = [
     {
       name: 'Home',
       base: {
-        title: 'Home page',
+        title: 'Home Page',
         description: 'Not Set Yet!'
       }
     },
     {
       name: 'Profile',
       base: {
-        title: 'Profile page',
+        title: 'Profile Page',
         description: 'Not Set Yet!'
       }
     },
     {
       name: 'Settings',
       base: {
-        title: 'Settings page',
+        title: 'Settings Page',
         description: 'Not Set Yet!'
       }
     }
   ];
 
-  constructor(private router: Router, private store$: Store<BaseState>) { }
+  constructor(private router: Router, private route: ActivatedRoute, private store: Store) {
+    this.setPageDataState();
+    this.router.events
+          .subscribe(
+            (event: NavigationEnd) => {
+              if(event instanceof NavigationEnd) {
+                this.currentPagename = event.urlAfterRedirects.split('/').pop();
+                this.setCurrentPageState();
+              }
+          });
+
+  }
 
   async loadPageData(): Promise<void>{
     return new Promise<void>((resolve) => {
@@ -43,46 +55,37 @@ export class StartupService {
           {
             name: 'Home',
             base: {
-              title: 'Home page',
+              title: 'Home Page',
               description: 'Welcome to PlanATechnology'
             }
           },
           {
             name: 'Profile',
             base: {
-              title: 'Profile page',
+              title: 'Profile Page',
               description: 'For Template Form Check Setting Page'
             }
           },
           {
             name: 'Settings',
             base: {
-              title: 'Settings page',
+              title: 'Settings Page',
               description: 'For Reactive Form Check Profile Page'
             }
           }
         ];
-        this.SetPageDataState();
-        this.SetCurrentPageState();
+        this.setPageDataState();
+        this.setCurrentPageState();
         resolve();
       }, 4000);
     });
   }
 
-  SetPageDataState() {
-    this.store$.dispatch(LoadBasePagesAction({payload: this.data, pageName: this.getRouteName()}));
+  setPageDataState() {
+    this.store.dispatch(loadBasePagesAction({payload: this.data, pageName: this.currentPagename}));
   }
 
-  SetCurrentPageState(){
-    this.store$.dispatch(GetBasePageByNameAction({pageName: this.getRouteName()}));
-  }
-
-  private getRouteName(): string{
-    this.router.events.subscribe((val) => {
-      if(val instanceof NavigationEnd){
-        return val['urlAfterRedirects'].split("/").pop();
-      }
-    });
-    return 'Home';
+  setCurrentPageState(){
+    this.store.dispatch(getBasePageByNameAction({pageName: this.currentPagename}));
   }
 }

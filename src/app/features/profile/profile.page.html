@@ -15,9 +15,9 @@
 
     <div>
         <b>Reactive Form</b>
-        <form [formGroup]="form" novalidate> 
-            <checkbox-group formControlName="items" (change)="saveCustomResult($event)"></checkbox-group>
+        <form [formGroup]="form" novalidate>
+            <app-checkbox-group formControlName="items" (change)="saveCustomResult()"></app-checkbox-group>
         </form>
         <p>Profile State Is: [ {{profileData$ | async}} ]</p>
-    </div>    
+    </div>
 </ion-content>

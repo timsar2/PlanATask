@@ -1,3 +1,3 @@
 export interface SettingState {
-    items: boolean[]
+    items: boolean[];
 }

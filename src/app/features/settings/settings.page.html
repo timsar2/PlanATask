@@ -5,7 +5,7 @@
                 {{title | async}}
                 <img src="../../../assets/icon/Plan-A-Technologies-Light-2.svg" />
             </div>
-        </ion-title>        
+        </ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -15,11 +15,11 @@
     <div>
         <b>Template Form</b>
         <div>
-            <checkbox-group [(ngModel)]="selectedItems" (change)="saveCustomResult()"></checkbox-group>
+            <app-checkbox-group [(ngModel)]="selectedItems" (change)="saveCustomResult()"></app-checkbox-group>
         </div>
     </div>
 
-    
+
     <p>Setting State Is: [ {{settingItems$ | async}} ]</p>
-        
+
 </ion-content>

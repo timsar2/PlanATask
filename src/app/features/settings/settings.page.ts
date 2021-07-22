@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from 'src/app/core/state/app.state';
 import { BasePage } from 'src/app/shared/models/base-page';
-import { SetSettingAction } from 'src/app/shared/store/actions/setting.action';
+import { setSettingAction } from 'src/app/shared/store/actions/setting.action';
 import { selectFeacureSetting } from 'src/app/shared/store/selectors/setting.selector';
 
 
@@ -14,21 +13,21 @@ import { selectFeacureSetting } from 'src/app/shared/store/selectors/setting.sel
 })
 export class SettingsPage extends BasePage implements OnInit {
 
-  settingItems$: Observable<boolean[]> = this.store$.pipe(select(selectFeacureSetting));
+  settingItems$: Observable<boolean[]> = this.store.select(selectFeacureSetting);
   selectedItems = [false, false , false] as boolean[];
 
-  constructor(protected store$: Store<AppState>) {
-    super(store$);
+  constructor(protected store: Store) {
+    super(store);
   }
 
   ngOnInit() {
   }
 
   saveCustomResult(){
-    let tmp = [];
+    const tmp = [];
     this.selectedItems.forEach(element => {
-      tmp.push(element)
+      tmp.push(element);
     });
-    this.store$.dispatch(SetSettingAction({payload: tmp}))
+    this.store.dispatch(setSettingAction({payload: tmp}));
   }
 }

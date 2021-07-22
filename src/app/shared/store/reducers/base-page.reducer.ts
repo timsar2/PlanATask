@@ -1,6 +1,6 @@
-import { Action, createReducer, on } from "@ngrx/store";
-import { BaseState } from "../../models/base-page.model";
-import { GetBasePageByNameAction, LoadBasePagesAction } from 'src/app/shared/store/actions/base-page.action';
+import { Action, createReducer, on } from '@ngrx/store';
+import { BaseState } from '../../models/base-page.model';
+import { getBasePageByNameAction, loadBasePagesAction } from 'src/app/shared/store/actions/base-page.action';
 
 export const initialState: BaseState = {
     data: [
@@ -18,24 +18,18 @@ export const initialState: BaseState = {
     }
 };
 
-const _basePageReducer = createReducer(
+const reducer = createReducer(
     initialState,
-    on( LoadBasePagesAction, (state, action) =>{
-        return {
-            ...state,
-            data: action.payload,
-            currentPageData: {...state.data.filter(x => x.name == action.pageName)[0].base}
-        }
-    }),
-    on(GetBasePageByNameAction, (state, action) => {
-        return {
-            ...state,
-            currentPageData: {...state.data.filter(x => x.name == action.pageName)[0].base}
-        }
-    })
-    
-)
+    on(loadBasePagesAction, (state, action): BaseState =>({
+      ...state,
+      data: action.payload,
+      currentPageData: {...state.data.filter(x => x.name === action.pageName)[0].base}
+    })),
+    on(getBasePageByNameAction, (state, action): BaseState => ({
+      ...state,
+      currentPageData: {...state.data.filter(x => x.name === action.pageName)[0].base}
+    }))
 
-export function basePageReducer (state:BaseState , action: Action){
-    return _basePageReducer(state, action);
-}
+);
+
+export const basePageReducer = (state: BaseState , action: Action) => reducer(state, action);

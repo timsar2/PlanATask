@@ -13,10 +13,10 @@ import { StoreModule } from '@ngrx/store';
 import { StartupService } from './providers/startup.service';
 import { environment } from '../environments/environment';
 
-export function initializeApp(config: StartupService) {
-  config.loadPageData();
-  return  () => config.SetCurrentPageState();
-}
+export const initializeApp = (startupService: StartupService): any => {
+  startupService.loadPageData();
+  return  () => startupService.setPageDataState();
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,18 +32,19 @@ export function initializeApp(config: StartupService) {
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }), StoreModule.forRoot({}, {})],
-  
-providers: [
-  StartupService,
-  { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  {
-    provide: APP_INITIALIZER,
-    useFactory: initializeApp,
-    deps: [StartupService],
-    multi: true
-  }
-],
+    })
+  ],
+
+  providers: [
+    StartupService,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [StartupService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

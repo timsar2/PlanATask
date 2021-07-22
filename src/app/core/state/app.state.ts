@@ -7,13 +7,13 @@ import { SettingState } from './../../shared/models/setting.state';
 import { settingReducer } from './../../shared/store/reducers/setting.reducer';
 
 export interface AppState {
-    base: BaseState,
-    settings: SettingState,
-    profile: ProfileState
+    base: BaseState;
+    settings: SettingState;
+    profile: ProfileState;
 }
 
 export const appReducer = {
-  basePageReducer:  basePageReducer,
-  settingReducer:   settingReducer,
-  profileReducer:   profileReducer
+  basePageReducer,
+  settingReducer,
+  profileReducer
 };

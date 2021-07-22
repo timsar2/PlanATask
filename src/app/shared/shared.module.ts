@@ -10,7 +10,7 @@ import { CheckboxGroupComponent } from './custom-form/checkbox-group/checkbox-gr
     CheckboxGroupComponent
   ],
   imports: [
-  
+
     // you can remove CommonModule from target module, where you import SharedModule
     CommonModule
 

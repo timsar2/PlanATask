@@ -1,3 +1,3 @@
 export interface ProfileState {
-    items: boolean[]
+    items: boolean[];
 }

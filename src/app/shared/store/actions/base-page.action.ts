@@ -1,10 +1,10 @@
-import { createAction, props } from "@ngrx/store"
-import { PageData } from "../../models/base-page.model";
+import { createAction, props } from '@ngrx/store';
+import { PageData } from '../../models/base-page.model';
 
-export const LoadBasePagesAction = createAction('[Base Page] All Page Data', 
-    props<{payload: PageData[], pageName: string}>());
+export const loadBasePagesAction = createAction('[Base Page] All Page Data',
+    props<{payload: PageData[]; pageName: string}>());
 
-export const GetBasePageByNameAction = createAction(
+export const getBasePageByNameAction = createAction(
     '[Base Page] Current Page Data',
     props<{pageName: string}>()
 );
