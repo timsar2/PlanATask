@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { interval } from 'rxjs';
 
 import { PageData } from '../shared/models/base-page.model';
 import { getBasePageByNameAction, loadBasePagesAction } from '../shared/store/actions/base-page.action';
@@ -49,6 +50,9 @@ export class StartupService {
   }
 
   async loadPageData(): Promise<void>{
+    console.log('Loading in 5 seconds');
+    const a = interval(1000).subscribe((res) => console.log(res+1));
+
     return new Promise<void>((resolve) => {
       setTimeout(() => {
         this.data = [
@@ -74,10 +78,11 @@ export class StartupService {
             }
           }
         ];
+        a.unsubscribe();
         this.setPageDataState();
         this.setCurrentPageState();
         resolve();
-      }, 4000);
+      }, 5000);
     });
   }
 

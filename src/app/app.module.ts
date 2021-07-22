@@ -14,8 +14,8 @@ import { StartupService } from './providers/startup.service';
 import { environment } from '../environments/environment';
 
 export const initializeApp = (startupService: StartupService): any => {
-  startupService.loadPageData();
-  return  () => startupService.setPageDataState();
+  startupService.setPageDataState();
+  return  () => startupService.loadPageData();
 };
 
 @NgModule({
