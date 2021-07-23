@@ -32,7 +32,6 @@ export const initializeApp = (startupService: StartupService): any => ()=> start
   ],
 
   providers: [
-    StartupService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: APP_INITIALIZER,

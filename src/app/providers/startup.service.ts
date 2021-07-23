@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RouterEvent, Event } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { interval } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 
 import { PageData } from '../shared/models/base-page.model';
 import { getBasePageByNameAction, loadBasePagesAction } from '../shared/store/actions/base-page.action';
@@ -14,14 +15,12 @@ export class StartupService {
   currentPagename = 'Home';
 
   constructor(private router: Router, private store: Store) {
-    this.router.events
-          .subscribe(
-            (event: NavigationEnd) => {
-              if(event instanceof NavigationEnd) {
-                this.currentPagename = event.urlAfterRedirects.split('/').pop();
-                this.setCurrentPageState();
-              }
-          });
+    this.router.events.pipe(
+      filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
+    ).subscribe((e: NavigationEnd) => {
+        this.currentPagename = e.urlAfterRedirects.split('/').pop();
+        this.setCurrentPageState();
+    });
   }
 
   async loadPageData(): Promise<void>{
