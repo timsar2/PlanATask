@@ -12,32 +12,9 @@ import { getBasePageByNameAction, loadBasePagesAction } from '../shared/store/ac
 export class StartupService {
 
   currentPagename = 'Home';
-  data: PageData[] = [
-    {
-      name: 'Home',
-      base: {
-        title: 'Home Page',
-        description: 'Not Set Yet!'
-      }
-    },
-    {
-      name: 'Profile',
-      base: {
-        title: 'Profile Page',
-        description: 'Not Set Yet!'
-      }
-    },
-    {
-      name: 'Settings',
-      base: {
-        title: 'Settings Page',
-        description: 'Not Set Yet!'
-      }
-    }
-  ];
+  data: PageData[];
 
   constructor(private router: Router, private store: Store) {
-    this.setPageDataState();
     this.router.events
           .subscribe(
             (event: NavigationEnd) => {
