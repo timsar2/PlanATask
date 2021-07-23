@@ -67,7 +67,7 @@ export class StartupService {
     this.store.dispatch(loadBasePagesAction({payload: this.data, pageName: this.currentPagename}));
   }
 
-  setCurrentPageState(){
+  setCurrentPageState() {
     this.store.dispatch(getBasePageByNameAction({pageName: this.currentPagename}));
   }
 }

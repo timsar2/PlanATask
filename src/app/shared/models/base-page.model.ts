@@ -3,12 +3,12 @@ export interface BasePageData {
     description: string;
 }
 
-export interface PageData{
+export interface PageData {
     name: string;
     base: BasePageData;
 }
 
-export interface BaseState{
+export interface BaseState {
     data: PageData[];
     currentPageData: BasePageData;
 }

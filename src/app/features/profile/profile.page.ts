@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+
 import { BasePage } from 'src/app/shared/models/base-page';
 import { setProfileAction } from 'src/app/shared/store/actions/profile.action';
 import { selectFeacureProfile } from 'src/app/shared/store/selectors/profile.selector';
@@ -26,7 +27,7 @@ export class ProfilePage extends BasePage implements OnInit {
   ngOnInit() {
   }
 
-  saveCustomResult(){
+  saveCustomResult() {
     const tmp = [];
     this.form.value.items.forEach(element => {
       tmp.push(element);

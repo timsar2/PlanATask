@@ -37,15 +37,6 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
 
     // detect change manualy because we want to change object index inside of ngfor
     if(value != null) { this.ref.detectChanges(); }
-
-    /** Use angular change detection strategy Instead of using new obj to prevent missing index inside of ngFor
-      if(value != null){
-        this.items = [];
-        this.model.forEach(element => {
-          this.items.push(element);
-        });
-      }
-     */
   }
 
   registerOnChange(fn: any): void {

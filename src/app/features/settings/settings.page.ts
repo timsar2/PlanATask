@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+
 import { BasePage } from 'src/app/shared/models/base-page';
 import { setSettingAction } from 'src/app/shared/store/actions/setting.action';
 import { selectFeacureSetting } from 'src/app/shared/store/selectors/setting.selector';
@@ -23,7 +24,7 @@ export class SettingsPage extends BasePage implements OnInit {
   ngOnInit() {
   }
 
-  saveCustomResult(){
+  saveCustomResult() {
     const tmp = [];
     this.selectedItems.forEach(element => {
       tmp.push(element);
