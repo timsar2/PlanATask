@@ -1,6 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
