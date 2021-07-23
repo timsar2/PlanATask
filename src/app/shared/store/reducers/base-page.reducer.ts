@@ -29,7 +29,6 @@ const reducer = createReducer(
       ...state,
       currentPageData: {...state.data.filter(x => x.name === action.pageName)[0].base}
     }))
-
 );
 
 export const basePageReducer = (state: BaseState , action: Action) => reducer(state, action);

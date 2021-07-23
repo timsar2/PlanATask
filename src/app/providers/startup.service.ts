@@ -12,7 +12,6 @@ import { getBasePageByNameAction, loadBasePagesAction } from '../shared/store/ac
 export class StartupService {
 
   currentPagename = 'Home';
-  data: PageData[];
 
   constructor(private router: Router, private store: Store) {
     this.router.events
@@ -23,7 +22,6 @@ export class StartupService {
                 this.setCurrentPageState();
               }
           });
-
   }
 
   async loadPageData(): Promise<void>{
@@ -32,7 +30,7 @@ export class StartupService {
 
     return new Promise<void>((resolve) => {
       setTimeout(() => {
-        this.data = [
+        const data: PageData[] = [
           {
             name: 'Home',
             base: {
@@ -56,15 +54,14 @@ export class StartupService {
           }
         ];
         a.unsubscribe();
-        this.setPageDataState();
-        this.setCurrentPageState();
+        this.setPageDataState(data);
         resolve();
       }, 5000);
     });
   }
 
-  setPageDataState() {
-    this.store.dispatch(loadBasePagesAction({payload: this.data, pageName: this.currentPagename}));
+  setPageDataState(data: PageData[]) {
+    this.store.dispatch(loadBasePagesAction({payload: data, pageName: this.currentPagename}));
   }
 
   setCurrentPageState() {
