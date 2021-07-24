@@ -24,7 +24,7 @@ export class StartupService {
   }
 
   async loadPageData(): Promise<void>{
-    console.log('Loading in 5 seconds');
+    console.log('Loading in 3 seconds');
     const a = interval(1000).subscribe((res) => console.log(res+1));
 
     return new Promise<void>((resolve) => {
@@ -55,7 +55,7 @@ export class StartupService {
         a.unsubscribe();
         this.setPageDataState(data);
         resolve();
-      }, 5000);
+      }, 3000);
     });
   }
 
