@@ -1,23 +1,23 @@
-<ion-header [translucent]="true" >
-    <ion-toolbar>
-        <ion-title>
-            <div class="flex items-center justify-between">
-                {{title | async}}
-                <img src="../../../assets/icon/Plan-A-Technologies-Light-2.svg" />
-            </div>
-        </ion-title>
-    </ion-toolbar>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div class="flex items-center justify-between">
+        {{title | async}}
+        <img src="../../../assets/icon/Plan-A-Technologies-Light-2.svg" />
+      </div>
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <h1 class="flex items-center justify-center">{{description | async}}</h1>
+  <h1 class="flex items-center justify-center">{{description | async}}</h1>
 
+  <div>
+    <b>Template Form</b>
     <div>
-        <b>Template Form</b>
-        <div>
-            <app-checkbox-group [(ngModel)]="selectedItems" (change)="saveCustomResult()"></app-checkbox-group>
-        </div>
+      <app-checkbox-group [(ngModel)]="selectedItems" (change)="saveCustomResult()"></app-checkbox-group>
     </div>
-    <p>Setting State Is: [ {{settingItems$ | async}} ]</p>
+  </div>
+  <p>Setting State Is: [ {{settingItems$ | async}} ]</p>
 
 </ion-content>

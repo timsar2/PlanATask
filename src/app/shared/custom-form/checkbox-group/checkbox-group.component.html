@@ -1,9 +1,9 @@
-<ng-container *ngFor="let item of model;let i = index" >
+<ng-container *ngFor="let item of model;let i = index">
   <div>
     <label class="inline-flex items-center">
-      <input type="checkbox" class="form-checkbox rounded text-indigo-600"  [checked]="item"
-        (click)="toggleCheck(i, $event)"/>
-        <span class="ml-2 text-gray-500">Item-{{i}}</span>
+      <input type="checkbox" class="form-checkbox rounded text-indigo-600" [checked]="item"
+        (click)="toggleCheck(i, $event)" />
+      <span class="ml-2 text-gray-500">Item-{{i}}</span>
     </label>
-</div>
+  </div>
 </ng-container>
