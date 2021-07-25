@@ -1,12 +1,12 @@
 import { createFeatureSelector } from '@ngrx/store';
-import { AppState } from 'src/app/core/state/app.state';
 
 import { createSelector } from '@ngrx/store';
 import { ProfileState } from 'src/app/shared/models/profile.state';
+import { FeatureState } from '..';
 
 export const PROFILE_STATE = 'profile';
 
-const featureSelector = createFeatureSelector<AppState, ProfileState>(PROFILE_STATE);
+const featureSelector = createFeatureSelector<FeatureState, ProfileState>(PROFILE_STATE);
 
 export const selectFeacureProfile = createSelector(
     featureSelector,
