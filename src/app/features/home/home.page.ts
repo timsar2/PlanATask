@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BasePage } from 'src/app/shared/models/base-page';
 import { Store } from '@ngrx/store';
+import { BasePage } from 'src/app/shared/models/base-page';
 
 @Component({
   selector: 'app-home',

@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+
 import { BaseState } from '../../models/base-page.model';
 import { getBasePageByNameAction, loadBasePagesAction } from 'src/app/shared/store/actions/base-page.action';
 

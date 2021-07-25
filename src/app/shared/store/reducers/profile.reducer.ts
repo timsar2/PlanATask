@@ -1,6 +1,5 @@
-import { Action } from '@ngrx/store';
-import { createReducer } from '@ngrx/store';
-import { on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
+
 import { ProfileState } from '../../models/profile.state';
 import { getProfileAction } from './../actions/profile.action';
 import { setProfileAction } from 'src/app/shared/store/actions/profile.action';

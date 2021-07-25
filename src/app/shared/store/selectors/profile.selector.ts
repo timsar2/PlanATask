@@ -1,8 +1,5 @@
-import { createFeatureSelector } from '@ngrx/store';
-
-import { createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ProfileState } from 'src/app/shared/models/profile.state';
-import { FeatureState } from '..';
 
 export const PROFILE_STATE = 'profile';
 

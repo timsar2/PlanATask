@@ -1,7 +1,6 @@
-import { Action } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { SettingState } from './../../models/setting.state';
-import { createReducer } from '@ngrx/store';
-import { on } from '@ngrx/store';
+
 import { getSettingAction, setSettingAction } from '../actions/setting.action';
 
 const inistialState: SettingState = {

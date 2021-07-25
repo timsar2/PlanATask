@@ -1,12 +1,10 @@
-
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from 'src/app/core/state/app.state';
 import { BaseState } from './../../models/base-page.model';
 
 
 export const PAGE_STATE_NAME = 'base';
 
-const selectFeature = createFeatureSelector<AppState, BaseState>(PAGE_STATE_NAME);
+const selectFeature = createFeatureSelector<BaseState>(PAGE_STATE_NAME);
 
 export const selectFeaturePageTitle =  createSelector(
     selectFeature,
