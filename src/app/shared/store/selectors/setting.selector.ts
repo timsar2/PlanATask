@@ -6,7 +6,7 @@ import { FeatureState } from '..';
 
 export const SETTING_STATE = 'settings';
 
-const featureSelector = createFeatureSelector<FeatureState, SettingState>(SETTING_STATE);
+const featureSelector = createFeatureSelector<SettingState>(SETTING_STATE);
 
 export const selectFeacureSetting = createSelector(
   featureSelector,
