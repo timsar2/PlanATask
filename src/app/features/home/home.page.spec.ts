@@ -4,8 +4,6 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { HomePage } from './home.page';
 import { AppState } from './../../core/state/app.state';
-import { SettingState } from 'src/app/shared/models/setting.state';
-import { ProfileState } from 'src/app/shared/models/profile.state';
 
 describe('HomePage', () => {
   let component: HomePage;
@@ -18,10 +16,8 @@ describe('HomePage', () => {
       currentPageData: {
         title: 'Home Page',
         description: 'Welcome to PlanATechnology'
+      }
     }
-    },
-    settings: {} as SettingState,
-    profile: {} as ProfileState
   };
 
   beforeEach(waitForAsync(() => {
@@ -44,10 +40,8 @@ describe('HomePage', () => {
         currentPageData: {
           title: 'Home Page Title Tested',
           description: 'Description Tested'
+        }
       }
-      },
-      settings: {} as SettingState,
-      profile: {} as ProfileState
     });
     store.refreshState();
   }));

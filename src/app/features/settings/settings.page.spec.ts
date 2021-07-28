@@ -4,8 +4,6 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { SettingsPage } from './settings.page';
 import { AppState } from './../../core/state/app.state';
-import { SettingState } from 'src/app/shared/models/setting.state';
-import { ProfileState } from 'src/app/shared/models/profile.state';
 
 describe('SettingsPage', () => {
   let component: SettingsPage;
@@ -18,10 +16,8 @@ describe('SettingsPage', () => {
       currentPageData: {
         title: 'Setting Page',
         description: 'old'
+      }
     }
-    },
-    settings: {} as SettingState,
-    profile: {} as ProfileState
   };
 
   beforeEach(waitForAsync(() => {
@@ -37,20 +33,21 @@ describe('SettingsPage', () => {
     fixture = TestBed.createComponent(SettingsPage);
 
     component = fixture.componentInstance;
-    fixture.detectChanges();
     store.setState({
       base: {
         data:[],
         currentPageData: {
           title: 'Setting Page Title Tested',
           description: 'Description Tested'
+        }
       }
-      },
-      settings: {} as SettingState,
-      profile: {} as ProfileState
     });
     store.refreshState();
   }));
+
+  afterEach(() => {
+    fixture.destroy();
+  });
 
   it('should display title from BaseState', () => {
     fixture.detectChanges();
