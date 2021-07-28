@@ -10,6 +10,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { StartupService } from './providers/startup.service';
 import { environment } from '../environments/environment';
+import { RoutingService } from './providers/routing.service';
 
 export const initializeApp = (startupService: StartupService): any => ()=> startupService.loadPageData();
 
@@ -17,7 +18,7 @@ export const initializeApp = (startupService: StartupService): any => ()=> start
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    CoreModule,
+  CoreModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
@@ -35,7 +36,7 @@ export const initializeApp = (startupService: StartupService): any => ()=> start
     {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,
-      deps: [StartupService],
+      deps: [StartupService, RoutingService],
       multi: true
     }
   ],

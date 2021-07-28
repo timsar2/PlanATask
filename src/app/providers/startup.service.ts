@@ -6,25 +6,17 @@ import { filter } from 'rxjs/operators';
 
 import { PageData } from '../shared/models/base-page.model';
 import { getBasePageByNameAction, loadBasePagesAction } from '../shared/store/actions/base-page.action';
+import { RoutingService } from './routing.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StartupService {
 
-  currentPagename = 'Home';
-
-  constructor(private router: Router, private store: Store) {
-    this.router.events.pipe(
-      filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
-    ).subscribe((e: NavigationEnd) => {
-        this.currentPagename = e.urlAfterRedirects.split('/').pop();
-        this.setCurrentPageState();
-    });
-  }
+  constructor(private routingService: RoutingService) {}
 
   async loadPageData(): Promise<void>{
-    console.log('Loading in 3 seconds');
+    console.log('APP_INITIALIZE in 3 seconds');
     const a = interval(1000).subscribe((res) => console.log(res+1));
 
     return new Promise<void>((resolve) => {
@@ -53,17 +45,10 @@ export class StartupService {
           }
         ];
         a.unsubscribe();
-        this.setPageDataState(data);
+        this.routingService.setPageDataState(data);
+        this.routingService.onRouteChange();
         resolve();
       }, 3000);
     });
-  }
-
-  setPageDataState(data: PageData[]) {
-    this.store.dispatch(loadBasePagesAction({payload: data, pageName: this.currentPagename}));
-  }
-
-  setCurrentPageState() {
-    this.store.dispatch(getBasePageByNameAction({pageName: this.currentPagename}));
   }
 }
