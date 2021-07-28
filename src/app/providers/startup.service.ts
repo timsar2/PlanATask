@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
-import { NavigationEnd, Router, Event } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { interval } from 'rxjs';
-import { filter } from 'rxjs/operators';
 
 import { PageData } from '../shared/models/base-page.model';
-import { getBasePageByNameAction, loadBasePagesAction } from '../shared/store/actions/base-page.action';
 import { RoutingService } from './routing.service';
 
 @Injectable({

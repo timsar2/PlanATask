@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router, Event } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, tap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { PageData } from '../shared/models/base-page.model';
 import { getBasePageByNameAction, loadBasePagesAction } from '../shared/store/actions/base-page.action';
 
