@@ -12,8 +12,8 @@ export class StartupService {
   constructor(private routingService: RoutingService) {}
 
   async loadPageData(): Promise<void>{
-    console.log('APP_INITIALIZE in 3 seconds');
-    const a = interval(1000).subscribe((res) => console.log(res+1));
+    console.log('APP_INITIALIZE simulate async call for 1 seconds');
+    const a = interval(1000).subscribe((res) => console.log('async call simulated for ' + (res+1) + ' second'));
 
     return new Promise<void>((resolve) => {
       setTimeout(() => {
@@ -44,7 +44,7 @@ export class StartupService {
         this.routingService.setPageDataState(data);
         this.routingService.onRouteChange();
         resolve();
-      }, 3000);
+      }, 1000);
     });
   }
 }
